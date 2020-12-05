@@ -5,11 +5,23 @@ import sys
 def print_help():
     print("HELP")
 
-
-def tint(hexcolor, percent):
+def hex_to_rgb(hexcolor):
     hexcolor = hexcolor.lstrip("#")
+    return tuple(int(hexcolor[i:i+2], 16) for i in (0, 2, 4))
 
-    print(hexcolor)
+def rgb_to_hex(rgb):
+    return "#%02x%02x%02x" % rgb
+
+def shade(hexcolor, percent):
+    rgb = hex_to_rgb(hexcolor)
+    if percent > 50:
+        shade_factor = (100 - percent) * 0.02
+        return rgb_to_hex(tuple(x * shade_factor for x in rgb))
+    elif percent < 50:
+        tint_factor = (100 - 2 * percent) / 100.0
+        return rgb_to_hex(tuple(x + (255 - x) * tint_factor for x in rgb))
+    else:
+        return rgb_to_hex(rgb)
 
 def main():
     num_args = len(sys.argv)
@@ -20,8 +32,8 @@ def main():
         print("-- 1")
     elif num_args == 3:
         hexcolor = sys.argv[1]
-        percent = sys.argv[2]
-        tint(hexcolor, percent)
+        percent = int(sys.argv[2])
+        print(shade(hexcolor, percent))
 
 if __name__ == "__main__":
     main()
