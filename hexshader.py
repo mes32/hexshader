@@ -29,7 +29,9 @@ def main():
     if num_args == 1 or num_args > 3 or (num_args == 2 and sys.argv[1] == "-h"):
         print_help()
     elif num_args == 2:
-        print("-- 1")
+        hexcolor = sys.argv[1]
+        for percent in range(100, 0, -10):
+            print(shade(hexcolor, percent))
     elif num_args == 3:
         hexcolor = sys.argv[1]
         percent = int(sys.argv[2])
