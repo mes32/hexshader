@@ -22,6 +22,9 @@ def rgb_to_hex(rgb):
 
 def shade(hexcolor, percent):
     rgb = hex_to_rgb(hexcolor)
+    if rgb[0] == rgb[1] and rgb[1] == rgb[2]:
+        rgb = (136, 136, 136)
+
     if percent > 50:
         shade_factor = (100 - percent) * 0.02
         return rgb_to_hex(tuple(x * shade_factor for x in rgb))
