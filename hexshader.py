@@ -41,7 +41,7 @@ def main():
         print_help()
     elif num_args == 2:
         hexcolor = sys.argv[1]
-        for percent in range(100, 0, -10):
+        for percent in range(100, -10, -10):
             print(shade(hexcolor, percent))
     elif num_args == 3:
         hexcolor = sys.argv[1]
