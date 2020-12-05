@@ -3,7 +3,15 @@
 import sys
 
 def print_help():
-    print("HELP")
+    print("""
+hexshader.py - Print shade and tint adjustments of a base color
+
+Usage:
+    python hexshader.py <color_hex> [percent]
+
+    color_hex - The base color in standard hexadecimal color format.
+    percent - Darkness adjustment from 0 to 100. Higher values produce darker shades of the base color.
+""")
 
 def hex_to_rgb(hexcolor):
     hexcolor = hexcolor.lstrip("#")
